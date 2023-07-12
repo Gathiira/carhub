@@ -6,7 +6,7 @@ import CustomButton from './CustomButton'
 
 const Navbar = () => {
     return (
-        <header className='w-full absolute z-10'>
+        <header className='w-full z-10 sticky top-0 bg-white shadow-sm'>
             <nav className='max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4'>
                 <Link href='/' className='flex justify-center items-center'>
                     <Image
@@ -19,7 +19,7 @@ const Navbar = () => {
                 </Link>
                 <CustomButton
                     title='Sign In'
-                    containerStyles='text-primary-blue rounded-full bg-white min-w-[130px]'
+                    containerStyles='text-white rounded-full min-w-[130px] bg-primary-blue'
                     btnType='button'
                 />
 
