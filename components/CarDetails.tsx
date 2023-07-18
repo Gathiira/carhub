@@ -1,7 +1,7 @@
 'use client';
 
 import { CarProps } from '@/types';
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
@@ -14,6 +14,11 @@ interface CarDetailsProps {
 }
 
 const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
+    const [mainImage, setMainImage] = useState(generateCarImageUrl(car))
+    const [image1, setImage1] = useState(generateCarImageUrl(car, '29'))
+    const [image2, setImage2] = useState(generateCarImageUrl(car, '33'))
+    const [image3, setImage3] = useState(generateCarImageUrl(car, '13'))
+
     return (
         <>
             <Transition appear show={isOpen} as={Fragment}>
@@ -51,17 +56,36 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                                     </button>
                                     <div className='flex-1 flex flex-col gap-3'>
                                         <div className='relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg'>
-                                            <Image src={generateCarImageUrl(car)} alt='car' fill priority className='object-contain' />
+                                            <Image
+                                                src={mainImage} alt='car' fill priority className='object-contain'
+                                                onError={() => {
+                                                    setMainImage('/car-placeholder.avif');
+                                                }}
+                                            />
                                         </div>
                                         <div className='flex gap-3 items-center'>
                                             <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '29')} alt='car' fill priority className='object-contain' />
+                                                <Image
+                                                    src={image1} alt='car' fill priority
+                                                    className='object-contain'
+                                                    onError={() => {
+                                                        setImage1('/car-placeholder.avif');
+                                                    }}
+                                                />
                                             </div>
                                             <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '33')} alt='car' fill priority className='object-contain' />
+                                                <Image src={image2} alt='car' fill priority className='object-contain'
+                                                    onError={() => {
+                                                        setImage2('/car-placeholder.avif');
+                                                    }}
+                                                />
                                             </div>
                                             <div className='flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg'>
-                                                <Image src={generateCarImageUrl(car, '13')} alt='car' fill priority className='object-contain' />
+                                                <Image src={image3} alt='car' fill priority className='object-contain'
+                                                    onError={() => {
+                                                        setImage3('/car-placeholder.avif');
+                                                    }}
+                                                />
                                             </div>
                                         </div>
                                     </div>
