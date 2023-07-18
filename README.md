@@ -9,3 +9,8 @@ NOTE:
 - I used default car image from [IMAGEIN STUDIO](https://www.imagin.studio/car-image-api) since their services are not free
   - I load the placeholder image on error from imagein studio car image url
   - soln. pay for imagein studio or get another free service.( still looking for one)
+
+SAMPLE ENV:
+
+NEXT_PUBLIC_RAPID_API_KEY='RAPI API KEY'
+NEXT_PUBLIC_IMAGIN_API_KEY='API KEY'
