@@ -1,7 +1,12 @@
 import { CarProps } from "@/types";
+import { FilterProps } from "@/types";
 
-export const fetchCars = async () => {
-    const url = 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=a3&limit=12';
+export const fetchCars = async (filters: FilterProps) => {
+
+    const { manufacturer, limit, fuel, year, model } = filters
+
+
+    const url = `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=${model}&limit=${limit}&make=${manufacturer}&fuel_type=${fuel}&year=${year}`;
 
     const headers = {
         'X-RapidAPI-Key': process.env.NEXT_PUBLIC_RAPID_API_KEY || "",
@@ -61,7 +66,7 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
 
     url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || '');
     url.searchParams.append('make', make);
-    url.searchParams.append('modelFamily', model);
+    url.searchParams.append('modelFamily', model.split(' ')[0]);
     url.searchParams.append('zoomType', 'fullscreen');
     url.searchParams.append('modelYear', `${year}`);
     // url.searchParams.append('zoomLevel', zoomLevel);
