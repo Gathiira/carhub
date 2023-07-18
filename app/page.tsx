@@ -11,7 +11,7 @@ interface SearchParamsProps {
   model: string;
 }
 
-export default async function Home(searchParams: SearchParamsProps) {
+export default async function Home({ ...searchParams }: SearchParamsProps) {
 
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || '',
